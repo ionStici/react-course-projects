@@ -1,24 +1,35 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-// const initialItems = [
-//     { id: 1, description: "Passports", quantity: 2, packed: false },
-//     { id: 2, description: "Socks", quantity: 12, packed: true },
-// ];
-
 function App() {
     const [items, setItems] = useState([]);
 
-    const addItem = (item) => {
+    function handleAddItems(item) {
         setItems((prev) => [...prev, item]);
-    };
+    }
+
+    function handleDeleteItem(id) {
+        setItems((items) => items.filter((item) => item.id !== id));
+    }
+
+    function handleToggleItem(id) {
+        setItems((items) => {
+            return items.map((item) =>
+                item.id === id ? { ...item, packed: !item.packed } : item
+            );
+        });
+    }
 
     return (
         <div className="app">
             <Logo />
-            <Form addItem={addItem} />
-            <PackingStats items={items} />
-            <Stats />
+            <Form onAddItems={handleAddItems} />
+            <PackingStats
+                items={items}
+                onDeleteItem={handleDeleteItem}
+                onToggleItem={handleToggleItem}
+            />
+            <Stats items={items} />
         </div>
     );
 }
@@ -27,7 +38,7 @@ function Logo() {
     return <h1>🏝️ Far Away 🧳</h1>;
 }
 
-function Form({ addItem }) {
+function Form({ onAddItems }) {
     const [description, setDescription] = useState("");
     const [quantity, setQuantity] = useState(1);
 
@@ -43,8 +54,7 @@ function Form({ addItem }) {
             id: Date.now(),
         };
 
-        // console.log(newItem);
-        addItem(newItem);
+        onAddItems(newItem);
 
         setDescription("");
         setQuantity(1);
@@ -75,15 +85,20 @@ function Form({ addItem }) {
 }
 
 Form.propTypes = {
-    addItem: PropTypes.func,
+    onAddItems: PropTypes.func,
 };
 
-function PackingStats({ items }) {
+function PackingStats({ items, onDeleteItem, onToggleItem }) {
     return (
         <div className="list">
             <ul>
                 {items.map((item) => (
-                    <Item key={item.id} item={item} />
+                    <Item
+                        key={item.id}
+                        item={item}
+                        onDeleteItem={onDeleteItem}
+                        onToggleItem={onToggleItem}
+                    />
                 ))}
             </ul>
         </div>
@@ -92,31 +107,60 @@ function PackingStats({ items }) {
 
 PackingStats.propTypes = {
     items: PropTypes.array,
+    onDeleteItem: PropTypes.func,
+    onToggleItem: PropTypes.func,
 };
 
-function Item({ item }) {
+function Item({ item, onDeleteItem, onToggleItem }) {
     return (
         <li>
+            <input
+                type="checkbox"
+                value={item.packed}
+                onChange={() => onToggleItem(item.id)}
+            />
             <span style={item.packed ? { textDecoration: "line-through" } : {}}>
                 {item.quantity} {item.description}
             </span>
-            <button>❌</button>
+            <button onClick={() => onDeleteItem(item.id)}>❌</button>
         </li>
     );
 }
 
 Item.propTypes = {
     item: PropTypes.object,
+    onDeleteItem: PropTypes.func,
+    onToggleItem: PropTypes.func,
 };
 
-function Stats() {
+function Stats({ items }) {
+    if (!items.length) {
+        return (
+            <p className="stats">
+                <em>Start adding some items to your packing list 🚀</em>
+            </p>
+        );
+    }
+
+    // Derived State
+    const numItems = items.length;
+    const numPacked = items.filter((item) => item.packed).length;
+    const percentage = Math.round((numPacked / numItems) * 100);
+
     return (
         <footer className="stats">
             <em>
-                🧳 You have X items on your list, and you already packed X (X%)
+                {percentage === 100
+                    ? "You got everything! Ready to go ✈️"
+                    : `🧳 You have ${numItems} items on your list, and you already
+                packed ${numPacked} (${percentage ? percentage : "0"}%)`}
             </em>
         </footer>
     );
 }
+
+Stats.propTypes = {
+    items: PropTypes.array,
+};
 
 export default App;
