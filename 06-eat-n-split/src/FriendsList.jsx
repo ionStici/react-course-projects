@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
 import Friend from './Friend';
 
-function FriendsList({ friends }) {
+function FriendsList({ friends, onSelection, selectedFriend }) {
+  console.log(friends);
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend friend={friend} key={friend.id} />
+        <Friend
+          friend={friend}
+          key={friend.id}
+          onSelection={onSelection}
+          selectedFriend={selectedFriend}
+        />
       ))}
     </ul>
   );
@@ -13,6 +19,8 @@ function FriendsList({ friends }) {
 
 FriendsList.propTypes = {
   friends: PropTypes.array,
+  onSelection: PropTypes.func,
+  selectedFriend: PropTypes.object,
 };
 
 export default FriendsList;
