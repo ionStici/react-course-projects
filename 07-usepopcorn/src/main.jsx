@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
-// import App from "./App.jsx";
-// import "./styles/index.css";
-import StarRating from "./StarRating";
+import App from "./App.jsx";
+import "./styles/index.css";
+// import Test from "./StarRating.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <App /> */}
-    <StarRating maxRating={5} />
+    {/* <Test /> */}
+    <App />
   </React.StrictMode>
 );
