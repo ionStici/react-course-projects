@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+// import { useEffect } from 'react';
 import Button from './Button';
 
 function FormSplitBill({ selectedFriend, onSplitBill }) {
@@ -8,11 +9,11 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
   const paidByFriend = bill ? bill - paidByUser : '';
   const [whoIsPaying, setWhoIsPaying] = useState('user');
 
-  useEffect(() => {
-    setBill('');
-    setPaidByUser('');
-    setWhoIsPaying('user');
-  }, [selectedFriend]);
+  //   useEffect(() => {
+  //     setBill('');
+  //     setPaidByUser('');
+  //     setWhoIsPaying('user');
+  //   }, [selectedFriend]);
 
   function handleSubmit(event) {
     event.preventDefault();
