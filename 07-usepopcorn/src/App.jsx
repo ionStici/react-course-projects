@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { tempMovieData, tempWatchedData } from "./data/tempData";
 import NavBar from "./components/NavBar";
 import Search from "./components/Search";
 import NumResults from "./components/NumResults";
@@ -8,34 +7,26 @@ import MovieList from "./components/MovieList";
 import WatchedSummary from "./components/WatchedSummary";
 import WatchedMovieList from "./components/WatchedMovieList";
 import Box from "./components/Box";
-
-const KEY = "9dfd7a18";
-
-function Loader() {
-  return <p className="loader">Loading...</p>;
-}
-
-function ErrorMessage({ message }) {
-  return (
-    <p className="error">
-      <span>⛔️</span> {message}
-    </p>
-  );
-}
+import MovieDetails from "./components/MovieDetails";
+import Loader from "./components/Loader";
+import ErrorMessage from "./components/ErrorMessage";
+import { KEY } from "./data/data";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [watched, setWatched] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const query = "fdsas";
+  const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     async function fetchMovies() {
       try {
         setIsLoading(true);
+        setError("");
 
         const res = await fetch(
           `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
@@ -57,26 +48,63 @@ export default function App() {
       }
     }
 
+    if (query.length < 3) {
+      setMovies([]);
+      setError("");
+      return;
+    }
     fetchMovies();
-  }, []);
+  }, [query]);
+
+  const handleSelectMovie = function (id) {
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
+  };
+
+  const handleCloseMovie = function () {
+    setSelectedId(null);
+  };
+
+  const handleAddWatched = function (movie) {
+    setWatched((watched) => [...watched, movie]);
+  };
+
+  const handleDeleteWatched = function (id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  };
 
   return (
     <>
       <NavBar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </NavBar>
 
       <Main>
         <Box>
           {isLoading && <Loader />}
-          {!isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && (
+            <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
+          )}
           {error && <ErrorMessage message={error} />}
         </Box>
 
         <Box>
-          <WatchedSummary watched={watched} />
-          <WatchedMovieList watched={watched} />
+          {selectedId ? (
+            <MovieDetails
+              selectedId={selectedId}
+              onCloseMovie={handleCloseMovie}
+              onAddWatched={handleAddWatched}
+              watched={watched}
+            />
+          ) : (
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMovieList
+                watched={watched}
+                onDeleteWatched={handleDeleteWatched}
+              />
+            </>
+          )}
         </Box>
       </Main>
     </>

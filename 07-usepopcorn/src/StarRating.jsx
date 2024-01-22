@@ -1,46 +1,4 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-
-function Test() {
-  const [movieRating, setMovieRating] = useState(0);
-  const [bookRating, setBookRating] = useState(0);
-  const [podcastRating, setPodcastRating] = useState(0);
-
-  return (
-    <>
-      <div>
-        <StarRating
-          maxRating={5}
-          defaultRating={4}
-          messages={["Terrible", "Bad", "Okay", "Good", "Amazing"]}
-          onSetRating={setBookRating}
-        />
-        <p>This movie was rated {bookRating} stars</p>
-      </div>
-      <div>
-        <StarRating
-          maxRating={7}
-          size={24}
-          color="red"
-          className="test"
-          defaultRating={3}
-          onSetRating={setPodcastRating}
-        />
-        <p>This movie was rated {podcastRating} stars</p>
-      </div>
-      <div>
-        <StarRating
-          color="blue"
-          onSetRating={setMovieRating}
-          defaultRating={1}
-        />
-        <p>This movie was rated {movieRating} stars</p>
-      </div>
-    </>
-  );
-}
-
-export default Test;
 
 const containerStyle = {
   display: "flex",
@@ -107,16 +65,6 @@ function StarRating({
   );
 }
 
-StarRating.propTypes = {
-  maxRating: PropTypes.number,
-  color: PropTypes.string,
-  size: PropTypes.number,
-  className: PropTypes.string,
-  messages: PropTypes.array,
-  defaultRating: PropTypes.number,
-  onSetRating: PropTypes.func,
-};
-
 function Star({ onRate, full, onHoverIn, onHoverOut, color, size }) {
   const starStyle = {
     display: "block",
@@ -161,3 +109,5 @@ function Star({ onRate, full, onHoverIn, onHoverOut, color, size }) {
     </span>
   );
 }
+
+export default StarRating;
