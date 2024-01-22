@@ -44,8 +44,18 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   }, [selectedId]);
 
   useEffect(() => {
+    if (!title) return;
     document.title = `Movie | ${title}`;
+    return () => (document.title = "usePopcorn");
   }, [title]);
+
+  useEffect(() => {
+    const callback = (e) => (e.code === "Escape" ? onCloseMovie() : "");
+
+    document.addEventListener("keydown", callback);
+
+    return () => document.removeEventListener("keydown", callback);
+  }, [selectedId]);
 
   const handleAdd = function () {
     const newWatchedMovie = {
