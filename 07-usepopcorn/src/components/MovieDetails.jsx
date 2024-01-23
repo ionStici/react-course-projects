@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import StarRating from "./../StarRating";
 import Loader from "./Loader";
 import { KEY } from "../data/data";
+import { useKey } from "../useKey";
 
 function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [movie, setMovie] = useState({});
@@ -55,13 +56,15 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     return () => (document.title = "usePopcorn");
   }, [title]);
 
-  useEffect(() => {
-    const callback = (e) => (e.code === "Escape" ? onCloseMovie() : "");
+  //   useEffect(() => {
+  //     const callback = (e) => (e.code === "Escape" ? onCloseMovie() : "");
 
-    document.addEventListener("keydown", callback);
+  //     document.addEventListener("keydown", callback);
 
-    return () => document.removeEventListener("keydown", callback);
-  }, [selectedId]);
+  //     return () => document.removeEventListener("keydown", callback);
+  //   }, [onCloseMovie]);
+
+  useKey("Escape", onCloseMovie);
 
   const handleAdd = function () {
     const newWatchedMovie = {
