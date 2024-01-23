@@ -10,80 +10,35 @@ import Box from "./components/Box";
 import MovieDetails from "./components/MovieDetails";
 import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
-import { KEY } from "./data/data";
+import { useMovies } from "./useMovies";
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
+  //   const [movies, setMovies] = useState([]);
   //   const [watched, setWatched] = useState([]);
+  //   const [isLoading, setIsLoading] = useState(false);
+  //   const [error, setError] = useState("");
 
   const [watched, setWatched] = useState(() => {
     const storedValue = localStorage.getItem("watched");
     return JSON.parse(storedValue);
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function fetchMovies() {
-      try {
-        setIsLoading(true);
-        setError("");
-
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-          {
-            signal: controller.signal,
-          }
-        );
-
-        if (!res.ok) throw Error("Something went wrong with fetching movies");
-
-        const data = await res.json();
-
-        if (data.Response === "False") throw Error("Movie not found");
-
-        setMovies(data.Search);
-
-        setIsLoading(false);
-        setError("");
-      } catch (err) {
-        if (err.name !== "AbortError") setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    if (query.length < 3) {
-      setMovies([]);
-      setError("");
-      return;
-    }
-
-    handleCloseMovie();
-    fetchMovies();
-
-    return () => controller.abort();
-  }, [query]);
+  const { movies, isLoading, error } = useMovies(query);
 
   const handleSelectMovie = function (id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   };
 
-  const handleCloseMovie = function () {
-    setSelectedId(null);
-  };
-
   const handleAddWatched = function (movie) {
     setWatched((watched) => [...watched, movie]);
-
-    // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   };
+
+  function handleCloseMovie() {
+    setSelectedId(null);
+  }
 
   const handleDeleteWatched = function (id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
