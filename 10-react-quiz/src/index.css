@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Codystar&display=swap");
+
 :root {
   --color-darkest: #343a40;
   --color-dark: #495057;
@@ -7,8 +9,6 @@
   --color-theme: #1098ad;
   --color-accent: #ffa94d;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Codystar&display=swap");
 
 * {
   margin: 0;
@@ -123,9 +123,9 @@ progress {
   border: 2px solid var(--color-dark);
   background-color: var(--color-dark);
   padding: 1.2rem 2.4rem;
-  cursor: pointer;
   border-radius: 100px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .btn:not([disabled]):hover {
