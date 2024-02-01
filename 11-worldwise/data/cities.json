@@ -25,159 +25,87 @@
       "id": "17806751"
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "id": "f367",
+      "cityName": "Rullac-Saint-Cirq",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2024-02-01T11:57:01.450Z",
+      "notes": "",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
+        "lat": "44.10336537791152",
+        "lng": "2.4829101562500004"
+      }
     },
     {
-      "id": "924f",
-      "cityName": "Cazalla de la Sierra",
+      "id": "a8bf",
+      "cityName": "Marmolejo",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2024-02-01T06:56:03.407Z",
+      "date": "2024-02-01T11:58:39.367Z",
       "notes": "",
       "position": {
-        "lat": "37.87485339352928",
-        "lng": "-5.866699218750001"
+        "lat": "38.06539235133249",
+        "lng": "-4.130859375000001"
       }
     },
     {
-      "id": "4257",
-      "cityName": "Cieza",
+      "id": "43f7",
+      "cityName": "La Morera",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2024-02-01T06:56:03.407Z",
+      "date": "2024-02-01T11:58:41.450Z",
       "notes": "",
       "position": {
-        "lat": "38.272688535980976",
-        "lng": "-1.4501953125000002"
+        "lat": "38.565347844885466",
+        "lng": "-6.65771484375"
       }
     },
     {
-      "id": "2e0a",
-      "cityName": "Ramenskoye",
-      "country": "Russian Federation (the)",
-      "emoji": "🇷🇺",
-      "date": "2024-02-01T06:58:34.056Z",
-      "notes": "",
-      "position": {
-        "lat": "55.42901345240742",
-        "lng": "38.14453125000001"
-      }
-    },
-    {
-      "id": "4656",
-      "cityName": "Spirovo",
-      "country": "Russian Federation (the)",
-      "emoji": "🇷🇺",
-      "date": "2024-02-01T06:59:50.610Z",
-      "notes": "",
-      "position": {
-        "lat": "57.539416794474995",
-        "lng": "35.13427734375001"
-      }
-    },
-    {
-      "id": "09b0",
-      "cityName": "Villacarralon",
+      "id": "5fa5",
+      "cityName": "Ponferrada",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2024-02-01T07:01:48.727Z",
+      "date": "2024-02-01T11:58:43.818Z",
       "notes": "",
       "position": {
-        "lat": "42.17968819665963",
-        "lng": "-5.053710937500001"
+        "lat": "42.601619944327965",
+        "lng": "-6.591796875000001"
       }
     },
     {
-      "id": "ce19",
-      "cityName": "Valdecanas de Tajo",
+      "id": "f41a",
+      "cityName": "Villadiego",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2024-02-01T07:01:48.727Z",
+      "date": "2024-02-01T11:58:46.652Z",
       "notes": "",
       "position": {
-        "lat": "39.740986355883564",
-        "lng": "-5.603027343750001"
+        "lat": "42.53689200787317",
+        "lng": "-4.064941406250001"
       }
     },
     {
-      "id": "35d0",
-      "cityName": "Valdecanas de Tajo",
+      "id": "3ebb",
+      "cityName": "Aguaron",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2024-02-01T07:01:48.727Z",
+      "date": "2024-02-01T11:58:49.786Z",
       "notes": "",
       "position": {
-        "lat": "39.740986355883564",
-        "lng": "-5.603027343750001"
+        "lat": "41.36031866306708",
+        "lng": "-1.2524414062500002"
       }
     },
     {
-      "id": "9eee",
-      "cityName": "Valdecanas de Tajo",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-02-01T07:01:48.727Z",
+      "id": "12bc",
+      "cityName": "Tissa",
+      "country": "Morocco",
+      "emoji": "🇲🇦",
+      "date": "2024-02-01T11:58:53.389Z",
       "notes": "",
       "position": {
-        "lat": "39.740986355883564",
-        "lng": "-5.603027343750001"
-      }
-    },
-    {
-      "id": "b4d3",
-      "cityName": "Vimioso",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2024-02-01T07:01:48.727Z",
-      "notes": "",
-      "position": {
-        "lat": "41.492120839687786",
-        "lng": "-6.613769531250001"
-      }
-    },
-    {
-      "id": "10d6",
-      "cityName": "Vimioso",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2024-02-01T07:02:35.608Z",
-      "notes": "",
-      "position": {
-        "lat": "41.492120839687786",
-        "lng": "-6.613769531250001"
-      }
-    },
-    {
-      "id": "0e11",
-      "cityName": "Autol",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-02-01T07:03:23.546Z",
-      "notes": "",
-      "position": {
-        "lat": "42.19596877629178",
-        "lng": "-1.9555664062500002"
-      }
-    },
-    {
-      "id": "be3b",
-      "cityName": "Cahir",
-      "country": "Ireland",
-      "emoji": "🇮🇪",
-      "date": "2024-02-01T07:04:13.964Z",
-      "notes": "",
-      "position": {
-        "lat": "52.26815737376817",
-        "lng": "-8.107910156250002"
+        "lat": "34.161818161230386",
+        "lng": "-4.614257812500001"
       }
     }
   ]
